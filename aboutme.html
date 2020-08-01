@@ -2,11 +2,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Resume</title>
+        <title>About me</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./css/root.css">
+        <link rel="stylesheet" href="./css/swup.css">
         <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
+        
     </head>
     <body>
         <nav>
@@ -20,9 +22,16 @@
                 <li id="about"><a href="./aboutme.html">About me</a></li>
                 <li id="education"><a href="./education.html">Education</a></li>
             </ul>
-        </nav> 
-        <footer>Lukas Kienast (Kreidl), Since 1993</footer>
+        </nav>
+        <main >
+            <div id="swup" class="transition-fade">
+                <h1>This is the About me page</h1>
+                <img class="img-profile" src="./img/profile.jpg" alt="profile" height="20%" width="20%">
+            </div>
+            
+        </main>
         
         <script defer src="./js/root.js"></script>
+        <script defer src="./js/swup.js"></script>
     </body>
 </html>

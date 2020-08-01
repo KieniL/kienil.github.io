@@ -24,6 +24,7 @@ nav {
 }
 
 .nav_links li a {
+    cursor: pointer;
     transition: all 0.3s ease 0s;
     color: white;
     text-decoration: none;
@@ -43,15 +44,11 @@ nav {
     color: #ae5fce;
 }
 
-main {
-    background: coral;
-    grid-column: 2 / 3;
-    overflow-y:auto; 
-  }
 
-  footer { 
+footer { 
     position: fixed;
     text-align: center;
+    padding: 0.5%;
     bottom: 0; 
     width: 100%; 
     /* Height of the footer*/  
@@ -80,7 +77,7 @@ main {
         right: 5%;
         top: 50%;
         transform: translate(-5%, -50%);
-        z-index: 2; /*With this the hamburger doesn't disappear on click*/
+        z-index: 3; /*With this the hamburger doesn't disappear on click*/
     }
     .nav_links {
         position: fixed;
@@ -94,11 +91,16 @@ main {
         pointer-events: none;
     }
 
+    .nav_links li a{
+        font-size: 2rem;
+    }
+
     /*This class is added with javascript so the navbar is in front*/
     .nav_links.open {
         clip-path: circle(1200px at 90% -10%); /*Create a circle from the nav*/
         -webkit-clip-path:circle(1200px at 90% -10%); /*Do this so every browser does it right*/
         pointer-events: all;
+        z-index: 2;
     }
 
     .landing {
@@ -109,7 +111,7 @@ main {
         opacity: 0;
     }
 
-    .nav_links li a {
+    .nav_links li {
         font-size: 25px;
     }
 
