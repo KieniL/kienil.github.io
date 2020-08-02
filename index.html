@@ -2,27 +2,119 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Resume</title>
+        <title>My Resume</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./css/root.css">
-        <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.css'>
     </head>
     <body>
-        <nav>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
+        <header>
+            <div class="header-top clearfix">
+                <h1 class="l-left"><a href="#profile">My Resume</a></h1>
+                <a class="l-right toggle-menu" profile="#">
+                <i></i>
+                <i></i>
+                <i></i>
+                </a>
             </div>
-            <ul class="nav_links">
-                <li id="home"><a href="./index.html">Home</a></li>
-                <li id="about"><a href="./aboutme.html">About me</a></li>
-                <li id="education"><a href="./education.html">Education</a></li>
-            </ul>
-        </nav> 
-        <footer>Lukas Kienast (Kreidl), Since 1993</footer>
+
+            <nav class="hide">
+                <ul id="menu">
+                    <li data-menuanchor="profile">
+                        <a href="#profile" title="profile">Profile</a>
+                    </li>
+                    <li data-menuanchor="education">
+                        <a href="#education" title="Education">Education</a>
+                    </li>
+                    <li data-menuanchor="thirdSection">
+                        <a href="#skills" title="skills">Skills</a>
+                    </li>
+                    <li data-menuanchor="fourthSection">
+                        <a href="#projects" title="projects">Projects</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="fullpage">
+            <section class="vertical-scrolling">   
+                <h2>About me</h2>
+                <div class="parent">
+                    <div class="child">
+                        <img class="profile" src="./img/profile.jpg" alt="profile" width="200rem" height="300rem"/>
+                    </div>
+                    <div class="child">
+                        <div class="personal-child">
+                            <p>B.Sc</p>
+                            <p>Married</p>
+                        </div>  
+                    </div>
+                    
+                </div>
+            </section>
+            <section class="vertical-scrolling">
+                <h2>Education</h2>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Year From</th>
+                            <th>Year to</th>
+                            <th>Topic</th>
+                            <th>Graduation</th>
+                            <th>Institution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>09/2017</td>
+                            <td>06/2020</td>
+                            <td>Witschaftsinformatik</td>
+                            <td>B.Sc</td>
+                            <td>FH Technikum Wien</td>
+                        </tr>
+                        <tr>
+                            <td>10/2014</td>
+                            <td>02/2015</td>
+                            <td>Chemie</td>
+                            <td>Abgebrochen</td>
+                            <td>Universität Wien</td>
+                        </tr>
+                        <tr>
+                            <td>10/2013</td>
+                            <td>02/2015</td>
+                            <td>Ernährungswissenschaften</td>
+                            <td>Abgebrochen</td>
+                            <td>Universität Wien</td>
+                        </tr>
+                        <tr>
+                            <td>09/2007</td>
+                            <td>06/2012</td>
+                            <td>Handelsakademie</td>
+                            <td>Matura</td>
+                            <td>Sacré Coeur Marienanstalt</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <img class="profile-wedd" src="./img/wedding.jpg" alt="profile" width="200rem" height="300rem"/>
+                </div>
+            </section>
+            <section class="vertical-scrolling">
+                <h2>Skills</h2>
+            </section>
+            <section class="vertical-scrolling">
+                <h2>Meine Projekte</h2>
+            </section>
+        </main>
+
+        <footer>
+
+        </footer>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.min.js'></script>
+        <script  src="./js/function.js"></script>
         
-        <script defer src="./js/root.js"></script>
     </body>
+
 </html>
