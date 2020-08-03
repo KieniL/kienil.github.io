@@ -12,7 +12,7 @@ $('#fullpage').fullpage({
   navigation: true,
   slidesNavigation: true,
   controlArrows: false,
-  anchors: ['profile', 'education', 'skills', 'projects'],
+  anchors: ['profile', 'education', 'experience', 'skills', 'projects'],
   menu: '#menu',
 
   afterLoad: function(anchorLink, index) {
