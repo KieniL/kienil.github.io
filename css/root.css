@@ -17,7 +17,7 @@ a {
 	text-decoration: none;
 	color: white;
 }
-ul, li {
+ul#menu, ul#menu li {
 	list-style-type: none;
 }
 .clearfix:before,
@@ -49,7 +49,7 @@ ul, li {
 .header-top {
 	background: rgba(0, 47, 77, .3);
 	height: 70px;
-	padding: 0 10px;
+	padding: 0 5px;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -170,38 +170,6 @@ h3 {
 }
 
 
-.content-table {
-    border-collapse: collapse; /*Reduces amount of space of the cells*/
-    margin: 25px 0; /*Space to content and bottom*/
-    font-size: 0.9em;
-    min-width: 25em; /*Eqauls to 400px*/
-    border-radius: 5px 5px 0 0; /*Make a radius on the left and right*/
-    overflow: hidden; /*Ensures that border radius works*/
-    box-shadow: 0 0 20px (rgba(0, 0, 0, 15));
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.content-table thead tr {
-    background-color: #009879; /*Color the tableheader*/
-    color: white;
-    text-align: left; /*Make sure columns and header is left*/
-    font-weight: bold;
-}
-
-.content-table tbody tr {
-    text-align: left;
-    border-bottom: 1px solid #dddddd; /*Light grey bottom line*/
-}
-
-.content-table th, .content-table td {
-    padding: 0.75em 0.9375em; /*12px 15px*/
-    font-size: 1.5rem;
-}
-
-.content-table tbody tr:nth-of-type(even){
-    background-color: #f3f3f3; /*Background color of every second row*/
-}
 .child {
     /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
     /*  If we don't want the items to stretch:*/
@@ -230,6 +198,18 @@ h3 {
     font-size: 5rem;
 }
 
+ul.education {
+	list-style-position: inside;
+	list-style-type: circle;
+}
+
+ul.education li{
+	font-size: 2em;
+	padding: 0.5%;
+	text-align: left;
+	margin-left: 20%;
+}
+
 @media screen and (max-width: 767px) {
 	nav ul {
 		flex-direction: column;
@@ -239,21 +219,31 @@ h3 {
 		margin-top: 1px;
 	}
   
-  nav li a {
-    font-size: 1.5em;
-  }
+  	nav li a {
+    	font-size: 1.5em;
+  	}
   
-  .scroll-icon {
-    display: none;
-  }
+  	.scroll-icon {
+    	display: none;
+	}
+	  
+	ul.education li{
+		margin-left: 0%;
+	}
+
+	.personal-child p:nth-child(2)::before {
+		content: ' ';
+		display: block;
+		height: 45rem;
+	}
 }
 
 @media screen and (max-width: 400px) {
-  html {
-    font-size: 50%;
-  }
+	html {
+		font-size: 50%;
+	}
   
-  .open-menu ~ nav {
+	.open-menu ~ nav {
 		padding: 20px 0;
 	}
 
