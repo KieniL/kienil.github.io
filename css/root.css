@@ -1,4 +1,5 @@
 /** Code By Webdevtrick ( https://webdevtrick.com ) **/
+/*Fullpage Start*/
 @import url(https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,700);
 * {
 	margin: 0;
@@ -106,11 +107,7 @@ nav {
  	height: 0;
 	opacity: 0;
   box-sizing: border-box;
-	background: rgba(0, 47, 77, .25);
-	position: fixed;
-	top: 70px;
-	width: 100%;
-  transition: all 1s;
+
 }
 .open-menu ~ nav {
 	opacity: 1;
@@ -168,8 +165,9 @@ h3 {
 	box-sizing: border-box;
 	border: 2px solid #212121;
 }
+/*Fullpage End*/
 
-
+/*About me Start*/
 .child {
     /*  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] */
     /*  If we don't want the items to stretch:*/
@@ -185,6 +183,11 @@ h3 {
     flex-wrap: wrap;
 }
 
+img.profile {
+		width: 20rem;
+		height: 30rem;
+}
+
 .personal-child {
     margin: 0;
     position: absolute;
@@ -198,6 +201,44 @@ h3 {
     font-size: 5rem;
 }
 
+.social-media {
+	text-align: left;
+	padding-left: 5rem;
+}
+
+.social-media li {
+	list-style-type: none;
+	margin: 1rem;
+}
+
+a[href*="github.com/"] {
+	background:url(https://github.com/favicon.ico) no-repeat left center ;
+	padding-left:29px;
+	background-size: 2rem;
+}
+
+a[href*="xing.com/"] {
+	background:url(https://www.xing.com/favicon.ico) no-repeat left center ;
+	padding-left:29px;
+	background-size: 2rem;
+}
+
+a[href*="hub.docker.com/"] {
+	background:url(https://hub.docker.com/favicon.ico) no-repeat left center ;
+	padding-left:29px;
+	background-size: 2rem;
+}
+
+a[href*="pypi.org/"] {
+	background:url(https://pypi.org/static/images/favicon.6a76275d.ico) no-repeat left center ;
+	padding-left:29px;
+	background-size: 2rem;
+}
+
+
+/*About me End*/
+
+/*Education Start*/
 ul.education {
 	list-style-position: inside;
 	list-style-type: circle;
@@ -210,8 +251,10 @@ ul.education li{
 	margin-left: 20%;
 }
 
+/*Education End*/
 
 @media screen and (max-width: 767px) {
+	/*Fullpage Start*/
 	nav ul {
 		flex-direction: column;
 	}
@@ -227,19 +270,30 @@ ul.education li{
   	.scroll-icon {
     	display: none;
 	}
-	  
+
+	/*Fullpage End*/
+
+	/*About me Start*/
+
+	img.profile {
+		margin-left: 22rem;
+	}
+
+	/*About me End*/
+
+
+	/*Education Start*/
 	ul.education li{
 		margin-left: 0%;
 	}
 
-	.personal-child p:nth-child(2)::before {
-		content: ' ';
-		display: block;
-		height: 45rem;
-	}
+	/*Education End*/
+
 }
 
 @media screen and (max-width: 400px) {
+
+	/*Fullpage Start*/
 	html {
 		font-size: 50%;
 	}
@@ -251,4 +305,7 @@ ul.education li{
 	nav li a {
 		padding: 3px;
 	}
+	/*Fullpage End*/
+
+	
 }
