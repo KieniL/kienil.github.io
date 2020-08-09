@@ -253,6 +253,35 @@ ul.education li{
 
 /*Education End*/
 
+
+/* Skills Start*/
+
+a.skills {
+	font-size: 2rem;
+}
+a[href*="youracclaim.com/"] {
+	background:url(https://images.youracclaim.com/size/340x340/images/1fdcf6a9-de8e-4e35-96b0-e801d8411506/AWS-CloudPractitioner.png) no-repeat left center ;
+	padding-left:29px;
+	background-size: 2rem;
+}
+
+h3.skilheader {
+	padding-bottom: 1rem;
+	text-align: left;
+	margin-left: 20%;
+}
+
+
+ul.skills li{
+	list-style-type: none;
+	font-size: 2em;
+	padding: 0.5%;
+	text-align: left;
+	margin-left: 20%;
+}
+
+/* Skills End*/
+
 @media screen and (max-width: 767px) {
 	/*Fullpage Start*/
 	nav ul {
