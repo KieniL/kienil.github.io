@@ -231,25 +231,25 @@ img.profile {
 
 a[href*="github.com/"] {
 	background:url(https://github.com/favicon.ico) no-repeat left center ;
-	padding-left:29px;
+	padding-left:5rem;
 	background-size: 2rem;
 }
 
 a[href*="xing.com/"] {
 	background:url(https://www.xing.com/favicon.ico) no-repeat left center ;
-	padding-left:29px;
+	padding-left:5rem;
 	background-size: 2rem;
 }
 
 a[href*="hub.docker.com/"] {
 	background:url(https://hub.docker.com/favicon.ico) no-repeat left center ;
-	padding-left:29px;
+	padding-left:5rem;
 	background-size: 2rem;
 }
 
 a[href*="pypi.org/"] {
 	background:url(https://pypi.org/static/images/favicon.6a76275d.ico) no-repeat left center ;
-	padding-left:29px;
+	padding-left:5rem;
 	background-size: 2rem;
 }
 
@@ -274,18 +274,35 @@ ul.education li{
 
 /* Skills Start*/
 
-a.skills {
-	font-size: 2em;
-	padding: 0.5%;
-	text-align: left;
-	margin-left: -43%;
-	color: white;
+ul.skills {
+	list-style-position: inside;
+	list-style-type: circle;
 }
+
+ul.skills li a{
+	font-size: 1em;
+	text-align: left;
+	padding-left: 5%;
+	font-weight: 900;
+}
+
+ul.skills li span{
+	font-size: 0.8em;
+	display: inline-block;
+}
+
 a[href*="youracclaim.com/"] {
 	background:url(https://images.youracclaim.com/size/340x340/images/1fdcf6a9-de8e-4e35-96b0-e801d8411506/AWS-CloudPractitioner.png) no-repeat left center ;
-	padding-left:29px;
+	padding-left:5rem;
 	background-size: 2rem;
 }
+
+a[href*="certmetrics.com/"] {
+	background:url(https://wac-cdn.atlassian.com/assets/img/favicons/atlassian/apple-touch-icon-57x57.png) no-repeat left center ;
+	padding-left:5rem;
+	background-size: 2rem;
+}
+
 
 h3.skilheader {
 	padding-bottom: 1rem;
@@ -308,7 +325,17 @@ ul.skills li{
 /* Skills End*/
 
 @media screen and (max-width: 767px) {
-	/*Fullpage Start*/
+	/*Fullpage Start*/a[href*="youracclaim.com/"] {
+	background:url(https://images.youracclaim.com/size/340x340/images/1fdcf6a9-de8e-4e35-96b0-e801d8411506/AWS-CloudPractitioner.png) no-repeat left center ;
+	padding-left:29px;
+	background-size: 2rem;
+}
+
+a[href*="certmetrics.com/"] {
+	background:url(https://wac-cdn.atlassian.com/assets/img/favicons/atlassian/apple-touch-icon-57x57.png) no-repeat left center ;
+	padding-left:29px;
+	background-size: 2rem;
+}
 	nav ul {
 		flex-direction: column;
 	}
@@ -367,9 +394,20 @@ ul.skills li{
 	/*Fullpage End*/
 
 	/* Skills Start*/
-	a.skills {
-		margin-left: 15%;
+
+	ul.skills li a.skills{
+		margin-left: 0%;
+		padding-left: 3rem;
 	}
+
+	a[href*="youracclaim.com/"] {
+		padding-right:2rem;
+	}
+	
+	a[href*="certmetrics.com/"] {
+		padding-right:2rem;
+	}
+
 	/* Skills End*/
 
 	
