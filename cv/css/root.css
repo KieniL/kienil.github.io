@@ -1,3 +1,21 @@
+@media (prefers-color-scheme: dark){
+	body {
+		background-color: #1c1c1e;
+		color: #fefefe;
+	}
+
+	a {
+		color: #5fa9ee;
+	}
+
+	img {
+		filter: grayscale(20%);
+	}
+
+}
+
+
+
 /** Code By Webdevtrick ( https://webdevtrick.com ) **/
 /*Fullpage Start*/
 @import url(https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,700);
@@ -191,7 +209,7 @@ img.profile {
 .personal-child {
     margin: 0;
     position: absolute;
-    top: 50%;
+    top: 60%;
     text-align: center;
     transform: translateY(-50%);
 }
