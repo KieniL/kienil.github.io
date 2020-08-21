@@ -1,16 +1,32 @@
+@media (prefers-color-scheme: dark){
+	body {
+		background-color: #1c1c1e;
+		color: #fefefe;
+	}
 
+	a {
+		color: #5fa9ee;
+	}
+
+	img {
+		filter: grayscale(20%);
+	}
+
+}
 
 canvas#myChart {
-    min-height: 13rem;
-    height: 500rem;
+    width:90rem !important;
+    height:50rem !important;
 }
-.data_wrap {
+
+.last_data_wrap {
     background-color: #DFDFDF;
     display: grid;
     height: 20rem;
-    width: 20rem;
-    grid-template-columns: repeat(12, 1fr);
+    width: 200rem;
+    grid-template-columns: repeat(3, 1fr);
 }
+
 
 .data1, .data2, .data3, .data4, .data5 {
     margin: 1rem;
@@ -43,4 +59,63 @@ canvas#myChart {
 .data5 {
     grid-column: span 2;
     grid-row: 3;
+}
+
+.content-table {
+    border-collapse: collapse; /*Reduces amount of space of the cells*/
+    margin: 25px 0; /*Space to content and bottom*/
+    font-size: 0.9em;
+    border-radius: 5px 5px 0 0; /*Make a radius on the left and right*/
+    overflow: hidden; /*Ensures that border radius works*/
+    box-shadow: 0 0 20px (rgba(0, 0, 0, 15));
+}
+
+.content-table thead tr {
+    background-color: #009879; /*Color the tableheader*/
+    color: white;
+    text-align: left; /*Make sure columns and header is left*/
+    font-weight: bold;
+}
+
+.content-table tbody tr {
+    text-align: left;
+    border-bottom: 1px solid #dddddd; /*Light grey bottom line*/
+}
+
+.content-table th, .content-table td {
+    padding: 0.75em 0.9375em; /*12px 15px*/
+}
+
+.content-table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3; /*Background color of every second row*/
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879; /*Make last line thicker*/
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+@media screen and (max-width: 400px) {
+    canvas#myChart {
+        width:20rem !important;
+        height:18rem !important;
+    }
+
+    
+    .last_data_wrap {
+        width: 20rem;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .content-table {
+        margin: 0; /*Space to content and bottom*/
+        border-radius: 0;
+        font-size: 0.5rem;
+    }
+    .content-table th, .content-table td {
+        padding: 0.5em 0.5em; /*12px 15px*/
+    }
 }

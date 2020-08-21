@@ -42,9 +42,9 @@ function drawChart() {
             data.push(loadedData[i].AktuellInfizierte);
         }
 
-        console.log(loadedData[Object.keys(loadedData).length -1]);
-
+        
         addDataToDiv(loadedData[Object.keys(loadedData).length -1]);
+        createTableFromData(loadedData);
 
         var myChartObject = $("#myChart");
         var chart = new Chart(myChartObject, {
@@ -62,25 +62,35 @@ function drawChart() {
                         display: false
                     },
                     responsive: false,
-                    maintainAspectRatio: false,
-                    
+                    maintainAspectRatio: false
                 }
             }
         });
     }
 
 
-    //Create Chart with the last Data inserted
+    //Create Div with the last Data inserted
     function addDataToDiv(data) {
         var str = "";
-        str +="<div class='data_wrap'>"
+        str +="<div class='last_data_wrap'>"
         str += "<div class='data1'><div class='div_header'>Letztes Datum</div>"+data.time+"</div>"
         str += "<div class='data2'><div class='div_header'>Gesamtinfiziert</div>"+data.GesamtInfizierte+"</div>"
         str += "<div class='data3'><div class='div_header'>Genesen</div>"+data.Genesen+"</div>"
         str += "<div class='data4'><div class='div_header'>Todesfälle</div>"+data.Todesfälle+"</div>"
         str += "<div class='data5'><div class='div_header'>Aktuell Infiziert</div>"+data.AktuellInfizierte+"</div>"
         str +="</div>"
-        $('#canvasdiv').prepend(str);
+        $('#data_wrap').prepend(str);
+    }
+
+    function createTableFromData(data){
+        var str = "";
+        str +="<table class='content-table'><thead>";
+        str +="<tr><td>Datum</td><td>Täglich Neu</td><td>Genesen</td><td>Gestorben</td><td>Gesamt Infiziert</td><td>Aktuell Infiziert</td></tr></thead><tbody>";
+        for (i = 0; i < Object.keys(data).length; i++) {
+            str += "<tr><td>"+data[i].time+"</td><td>"+data[i]["tägliche Erkrankungen"]+"</td><td>"+data[i].Genesen+"</td><td>"+data[i]["Todesfälle"]+"</td><td>"+data[i]["GesamtInfizierte"]+"</td><td>"+data[i]["AktuellInfizierte"]+"</td></tr>";
+          } 
+        str +="</tbody></table>";
+        $('#tablediv').append(str);
     }
 
 
