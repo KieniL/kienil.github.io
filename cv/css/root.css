@@ -288,7 +288,7 @@ ul.skills li a{
 
 ul.skills li span{
 	font-size: 0.8em;
-	display: inline-block;
+	display: inline-block; /*If there is no space then the span is on a new line*/
 }
 
 a[href*="youracclaim.com/"] {

@@ -1,0 +1,46 @@
+
+
+canvas#myChart {
+    min-height: 13rem;
+    height: 500rem;
+}
+.data_wrap {
+    background-color: #DFDFDF;
+    display: grid;
+    height: 20rem;
+    width: 20rem;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.data1, .data2, .data3, .data4, .data5 {
+    margin: 1rem;
+    text-align: center;
+    padding: 0.5rem;
+    background: white;
+}
+
+.div_header {
+    margin-top: 0.8rem;
+    margin-bottom: 0.3rem;
+}
+
+.data1 {
+    grid-column: 1;
+    grid-row: 1;
+}
+.data2 {
+    grid-column: 2;
+    grid-row: 1;
+}
+.data3 {
+    grid-column: 1;
+    grid-row: 2;
+}
+.data4 {
+    grid-column: 2;
+    grid-row: 2;
+}
+.data5 {
+    grid-column: span 2;
+    grid-row: 3;
+}
