@@ -41,10 +41,6 @@ canvas#myChart {
 }
 
 
-.div_header {
-    margin-top: 0.8rem;
-    margin-bottom: 0.3rem;
-}
 
 .data1 {
     grid-column: 1;
@@ -131,8 +127,228 @@ canvas#myChart {
     color: #009879;
 }
 
+
+@media screen and (min-width: 4701px) and (max-width: 6200px) {
+        
+    canvas#myChart {
+        width:160rem !important;
+        height:145rem !important;
+    }
+
+    #data_wrap{
+        margin-top: 4rem;
+        justify-content: left;
+    }
+
+    #last_data_wrap {
+        height: 40rem;
+        width: 380rem;
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 3.5rem;
+    }
+
+    .content-table {
+        font-size: 4rem;
+        
+    }
+    .content-table tbody {
+        max-height: 130rem;
+    }
+
+}
+
+
+@media screen and (min-width: 3701px) and (max-width: 4700px) {
+    
+    canvas#myChart {
+        width:140rem !important;
+        height:110rem !important;
+    }
+
+    #data_wrap{
+        margin-top: 4rem;
+        justify-content: left;
+    }
+
+    #last_data_wrap {
+        height: 30rem;
+        width: 285rem;
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 3rem;
+    }
+
+    .content-table {
+        font-size: 3rem;
+        
+    }
+    .content-table tbody {
+        max-height: 96rem;
+    }
+
+}
+
+@media screen and (min-width: 3101px) and (max-width: 3700px) {
+   
+    canvas#myChart {
+        width:120rem !important;
+        height:90rem !important;
+    }
+
+    #data_wrap{
+        margin-top: 4rem;
+        justify-content: left;
+    }
+
+    #last_data_wrap {
+        height: 25rem;
+        width: 226rem;
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 2rem;
+    }
+
+    .content-table {
+        font-size: 2rem;
+    }
+    .content-table tbody {
+        max-height: 77rem;
+    }
+}
+
+
+/*Big Laptop Size*/
+@media screen and (min-width: 2701px) and (max-width: 3100px) {
+    
+    canvas#myChart {
+        width:100rem !important;
+        height:70rem !important;
+    }
+
+    #data_wrap {
+        margin-top: 5rem;
+        justify-content: left;
+    }
+
+    #last_data_wrap {
+        height: 20rem;
+        width: 190rem;
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 1.5rem;
+    }
+
+    .content-table {
+        font-size: 2rem;
+    }
+    .content-table tbody {
+        max-height: 58rem;
+    }
+}
+
+@media screen and (min-width: 2601px) and (max-width: 2700px) {
+
+    canvas#myChart {
+        width:90rem !important;
+        height:55rem !important;
+    }
+
+    #data_wrap {
+        margin-top: 5rem;
+        justify-content: left;
+    }
+
+    #last_data_wrap {
+        height: 20rem;
+        width: 163rem;
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 1.5rem;
+    }
+
+    .content-table {
+        font-size: 1.5rem;
+    }
+    .content-table tbody {
+        max-height: 48rem;
+    }
+}
+
+
+
+@media screen and (min-width: 2101px) and (max-width: 2600px) {
+
+
+    canvas#myChart {
+        width:85rem !important;
+        height:48rem !important;
+    }
+
+    #data_wrap {
+        margin-top: 1rem;
+        justify-content: left;
+    }
+
+    #last_data_wrap {
+        height: 20rem;
+        width: 142rem;
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 1.5rem;
+    }
+
+    .content-table {
+        font-size: 1.5rem;
+    }
+    .content-table tbody {
+        max-height: 40rem;
+    }
+}
+
+
+@media screen and (min-width: 2001px) and (max-width: 2100px) {
+
+    canvas#myChart {
+        width:65rem !important;
+        height:48rem !important;
+    }
+
+    #data_wrap {
+        margin-top: 1rem;
+        justify-content: left;
+    }
+
+    #last_data_wrap {
+        height: 20rem;
+        width: 126rem;
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 1.5rem;
+    }
+
+    .content-table {
+        font-size: 1.5rem;
+    }
+    .content-table tbody {
+        max-height: 40rem;
+    }
+
+}
+/*Laptop Size*/
+@media screen and (min-width: 1801px) and (max-width: 2000px) {
+    canvas#myChart {
+        width:75rem !important;
+        height:50rem !important;
+    }
+
+    #last_data_wrap {
+        height: 20rem;
+        width: 112rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content-table tbody {
+        max-height: 50rem;
+    }
+
+}
+
 /*Samsung Galaxy Tab 805 Size*/
-@media screen and (max-width: 1800px) {
+@media screen and (min-width: 401px) and (max-width: 1800px) {
 
     canvas#myChart {
         width:45rem !important;
@@ -158,8 +374,6 @@ canvas#myChart {
         height:20rem !important;
         margin-left: 0;
     }
-
-
     #data_wrap {
         display: inline;
         justify-content: left;
