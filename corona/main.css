@@ -1,4 +1,4 @@
-@media (prefers-color-scheme: dark){
+@media (prefers-color-scheme: dark) {
 	body {
 		background-color: #1c1c1e;
 		color: #fefefe;
@@ -15,16 +15,16 @@
 }
 
 canvas#myChart {
-    width:90rem !important;
+    width:75rem !important;
     height:50rem !important;
 }
 
-.last_data_wrap {
+#last_data_wrap {
     background-color: #DFDFDF;
     display: grid;
     height: 20rem;
-    width: 200rem;
-    grid-template-columns: repeat(3, 1fr);
+    width: 112rem;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 
@@ -34,6 +34,13 @@ canvas#myChart {
     padding: 0.5rem;
     background: white;
 }
+
+#data_wrap {
+    display: flex;
+    justify-content: center;
+}
+
+
 
 .div_header {
     margin-top: 0.8rem;
@@ -77,6 +84,32 @@ canvas#myChart {
     font-weight: bold;
 }
 
+.content-table thead tr:after {
+	content: '';
+	overflow-y: scroll;
+	visibility: hidden;
+}
+
+.content-table thead th {
+	flex: 1 auto;
+	display: block;
+}
+.content-table tbody {
+	display: block;
+	width: 100%;
+	overflow-y: auto;
+	height: auto;
+	max-height: 50rem;
+}
+.content-table thead tr,
+.content-table tbody tr {
+	display: flex;
+}
+.content-table tbody tr td {
+	flex: 1 auto;
+	word-wrap: break;
+}
+
 .content-table tbody tr {
     text-align: left;
     border-bottom: 1px solid #dddddd; /*Light grey bottom line*/
@@ -98,6 +131,28 @@ canvas#myChart {
     font-weight: bold;
     color: #009879;
 }
+
+/*Samsung Galaxy Tab 805 Size*/
+@media screen and (max-width: 1800px) {
+
+    canvas#myChart {
+        width:45rem !important;
+        height:45rem !important;
+        margin-left: 2.5rem;
+    }
+        
+    #last_data_wrap {
+        height: 19rem;
+        width: 78rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content-table tbody {
+        max-height: 40rem;
+    }
+
+}
+
 @media screen and (max-width: 400px) {
     canvas#myChart {
         width:20rem !important;

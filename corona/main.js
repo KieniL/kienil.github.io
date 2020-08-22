@@ -1,3 +1,8 @@
+//Register trendplugin
+Chart.plugins.register({
+    id: 'chartjs-plugin-trendline'
+});
+
 var loadedData = "";
 var count = 0;
 //after initial side loading Data will be loaded
@@ -56,6 +61,11 @@ function drawChart() {
                     backgroundColor: "Blue",
                     data: data,
                     pointRadius: 0,
+                    /*trendlineLinear: {
+                        style: "rgba(255,105,180, .8)",
+                        lineStyle: "dotted|solid",
+                        width: 2
+                    }*/
                 }],
                 options: {
                     legend: {
@@ -72,14 +82,12 @@ function drawChart() {
     //Create Div with the last Data inserted
     function addDataToDiv(data) {
         var str = "";
-        str +="<div class='last_data_wrap'>"
         str += "<div class='data1'><div class='div_header'>Letztes Datum</div>"+data.time+"</div>"
         str += "<div class='data2'><div class='div_header'>Gesamtinfiziert</div>"+data.GesamtInfizierte+"</div>"
         str += "<div class='data3'><div class='div_header'>Genesen</div>"+data.Genesen+"</div>"
         str += "<div class='data4'><div class='div_header'>Todesfälle</div>"+data.Todesfälle+"</div>"
         str += "<div class='data5'><div class='div_header'>Aktuell Infiziert</div>"+data.AktuellInfizierte+"</div>"
-        str +="</div>"
-        $('#data_wrap').prepend(str);
+        $('#last_data_wrap').prepend(str);
     }
 
     function createTableFromData(data){
