@@ -1,8 +1,3 @@
-//Register trendplugin
-Chart.plugins.register({
-    id: 'chartjs-plugin-trendline'
-});
-
 var loadedData = "";
 var count = 0;
 //after initial side loading Data will be loaded
@@ -61,11 +56,6 @@ function drawChart() {
                     backgroundColor: "Blue",
                     data: data,
                     pointRadius: 0,
-                    /*trendlineLinear: {
-                        style: "rgba(255,105,180, .8)",
-                        lineStyle: "dotted|solid",
-                        width: 2
-                    }*/
                 }],
                 options: {
                     legend: {
@@ -94,7 +84,7 @@ function drawChart() {
         var str = "";
         str +="<table class='content-table'><thead>";
         str +="<tr><td>Datum</td><td>Täglich Neu</td><td>Genesen</td><td>Gestorben</td><td>Gesamt Infiziert</td><td>Aktuell Infiziert</td></tr></thead><tbody>";
-        for (i = 0; i < Object.keys(data).length; i++) {
+        for (i = Object.keys(data).length - 1; i >= 0 ; i--) {
             str += "<tr><td>"+data[i].time+"</td><td>"+data[i]["tägliche Erkrankungen"]+"</td><td>"+data[i].Genesen+"</td><td>"+data[i]["Todesfälle"]+"</td><td>"+data[i]["GesamtInfizierte"]+"</td><td>"+data[i]["AktuellInfizierte"]+"</td></tr>";
           } 
         str +="</tbody></table>";
