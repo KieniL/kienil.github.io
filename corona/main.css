@@ -41,7 +41,6 @@ canvas#myChart {
 }
 
 
-
 .div_header {
     margin-top: 0.8rem;
     margin-bottom: 0.3rem;
@@ -156,13 +155,24 @@ canvas#myChart {
 @media screen and (max-width: 400px) {
     canvas#myChart {
         width:20rem !important;
-        height:18rem !important;
+        height:20rem !important;
+        margin-left: 0;
+    }
+
+
+    #data_wrap {
+        display: inline;
+        justify-content: left;
     }
 
     
-    .last_data_wrap {
+    #last_data_wrap {
         width: 20rem;
+        height: 21rem;
         grid-template-columns: repeat(4, 1fr);
+    }
+    .content-table tbody {
+        max-height: 20rem;
     }
 
     .content-table {
