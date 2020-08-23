@@ -369,12 +369,6 @@ div#canvasdiv {
 }
 
 @media screen and (min-width: 401px) and (max-width: 1000px) {
-    .data1, .data2, .data3, .data4, .data5 {
-        margin: 1rem;
-        text-align: center;
-        padding: 0.5rem;
-        background: blue;
-    }
     div#canvasdiv {
         width:50rem !important;
         height:30rem !important;
