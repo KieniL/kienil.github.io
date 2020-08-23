@@ -14,7 +14,7 @@
 
 }
 
-canvas#myChart {
+div#canvasdiv {
     width:75rem !important;
     height:50rem !important;
 }
@@ -130,7 +130,7 @@ canvas#myChart {
 
 @media screen and (min-width: 4701px) and (max-width: 6200px) {
         
-    canvas#myChart {
+    div#canvasdiv {
         width:160rem !important;
         height:145rem !important;
     }
@@ -160,7 +160,7 @@ canvas#myChart {
 
 @media screen and (min-width: 3701px) and (max-width: 4700px) {
     
-    canvas#myChart {
+    div#canvasdiv {
         width:140rem !important;
         height:110rem !important;
     }
@@ -189,7 +189,7 @@ canvas#myChart {
 
 @media screen and (min-width: 3101px) and (max-width: 3700px) {
    
-    canvas#myChart {
+    div#canvasdiv {
         width:120rem !important;
         height:90rem !important;
     }
@@ -218,7 +218,7 @@ canvas#myChart {
 /*Big Laptop Size*/
 @media screen and (min-width: 2701px) and (max-width: 3100px) {
     
-    canvas#myChart {
+    div#canvasdiv {
         width:100rem !important;
         height:70rem !important;
     }
@@ -245,7 +245,7 @@ canvas#myChart {
 
 @media screen and (min-width: 2601px) and (max-width: 2700px) {
 
-    canvas#myChart {
+    div#canvasdiv {
         width:90rem !important;
         height:55rem !important;
     }
@@ -275,7 +275,7 @@ canvas#myChart {
 @media screen and (min-width: 2101px) and (max-width: 2600px) {
 
 
-    canvas#myChart {
+    div#canvasdiv {
         width:85rem !important;
         height:48rem !important;
     }
@@ -303,7 +303,7 @@ canvas#myChart {
 
 @media screen and (min-width: 2001px) and (max-width: 2100px) {
 
-    canvas#myChart {
+    div#canvasdiv {
         width:65rem !important;
         height:48rem !important;
     }
@@ -330,7 +330,7 @@ canvas#myChart {
 }
 /*Laptop Size*/
 @media screen and (min-width: 1801px) and (max-width: 2000px) {
-    canvas#myChart {
+    div#canvasdiv {
         width:75rem !important;
         height:50rem !important;
     }
@@ -348,9 +348,9 @@ canvas#myChart {
 }
 
 /*Samsung Galaxy Tab 805 Size*/
-@media screen and (min-width: 401px) and (max-width: 1800px) {
+@media screen and (min-width: 1001px) and (max-width: 1800px) {
 
-    canvas#myChart {
+    div#canvasdiv {
         width:45rem !important;
         height:45rem !important;
         margin-left: 2.5rem;
@@ -368,11 +368,40 @@ canvas#myChart {
 
 }
 
+@media screen and (min-width: 401px) and (max-width: 1000px) {
+    .data1, .data2, .data3, .data4, .data5 {
+        margin: 1rem;
+        text-align: center;
+        padding: 0.5rem;
+        background: blue;
+    }
+    div#canvasdiv {
+        width:50rem !important;
+        height:30rem !important;
+        margin-left: 0;
+    }
+
+    #last_data_wrap {
+        width: 105rem;
+        height: 21rem;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    #data_wrap {
+        display: inline;
+        justify-content: left;
+    }
+
+    .content-table tbody {
+        max-height: 20rem;
+    }
+
+}
+
 @media screen and (max-width: 400px) {
-    canvas#myChart {
+    div#canvasdiv {
         width:20rem !important;
         height:20rem !important;
-        margin-left: 0;
+        margin-left: 1rem;
     }
     #data_wrap {
         display: inline;
