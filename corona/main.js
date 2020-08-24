@@ -8,7 +8,7 @@ loadData();
 Returns 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (alles)
 */
 $('.box').on('change', function() {
-    //alert( $(this).find(":selected").val() );
+    //Draw the new chart
     drawChart();
 });
 
@@ -104,7 +104,7 @@ function drawChart() {
         title = "";
         function drawChart() {
 
-            //Returns 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (alles)
+            //Returns Data for different selections 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (alles)
             switch(chartSelect.toString()) {
                 case "1":
                     // code block
@@ -151,6 +151,31 @@ function drawChart() {
                         ]);
                     });
                     title = "Gestorben";
+                    break;
+                case "4":
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('date', 'time');
+                    data.addColumn('number', '7 Tage Trend Neu Infiziert');
+
+                    //Convert to a value array
+                    jsonData = Object.values(jsonData);
+                    jsonData.forEach(function (row, i) {
+                        row.GesamtInfizierte
+                        var average = 0;
+                        for(var j = 6; j >= 0; j--){
+                            if( i - j >= 0){
+                                console.log(i -j);
+                                average += jsonData[i -j]["tägliche Erkrankungen"]
+                            }
+                            
+                        }
+
+                        data.addRow([
+                            new Date(row.time.replace(pattern,'$3-$2-$1')),
+                            average / 7
+                        ]);
+                    });
+                    title = "7 Tage Trend";
                     break;
                 default:
                     var data = new google.visualization.DataTable();
@@ -238,6 +263,11 @@ function drawChart() {
             chart.draw(data, options);
       }
     }
+}
+
+
+function calculateAverage() {
+
 }
 
 //Create Div with the last Data inserted
