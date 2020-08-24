@@ -4,6 +4,15 @@ var count = 0;
 loadData();
 
 
+/*
+Returns 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (alles)
+*/
+$('.box').on('change', function() {
+    //alert( $(this).find(":selected").val() );
+    drawChart();
+});
+
+
 function highlight_row() {
     var table = document.getElementsByClassName('content-table')[0];
     var cells = table.getElementsByTagName('td');
@@ -61,6 +70,8 @@ function loadData() {
         success: function (data) {
             loadedData = data;
             drawChart();
+            addDataToDiv(loadedData[Object.keys(loadedData).length -1]);
+            createTableFromData(loadedData);
         },
         error: function (err) {
             var str = "Daten konnten nicht geladen werden";
@@ -80,47 +91,134 @@ function drawChart() {
         alert(str);
         console.log(str);
     }else{
-        
-        addDataToDiv(loadedData[Object.keys(loadedData).length -1]);
-        createTableFromData(loadedData);
-
-        createChart(loadedData);
+        createChart(loadedData, $('.box').find(":selected").val());
         
     }
-    function createChart(jsonData) {
+
+
+    function createChart(jsonData, chartSelect) {
+
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
         var pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
-
+        title = "";
         function drawChart() {
+
+            //Returns 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (alles)
+            switch(chartSelect.toString()) {
+                case "1":
+                    // code block
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('date', 'time');
+                    data.addColumn('number', 'Infizierte');
+
+                    //Convert to a value array
+                    jsonData = Object.values(jsonData);
+                    jsonData.forEach(function (row) {
+                        data.addRow([
+                            new Date(row.time.replace(pattern,'$3-$2-$1')),
+                            row.AktuellInfizierte
+                        ]);
+                    });
+                    title = "Täglich Infizierte"
+                    break;
+                case "2":
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('date', 'time');
+                    data.addColumn('number', 'Genesen');
+
+                    //Convert to a value array
+                    jsonData = Object.values(jsonData);
+                    jsonData.forEach(function (row) {
+                        data.addRow([
+                            new Date(row.time.replace(pattern,'$3-$2-$1')),
+                            row.Genesen
+                        ]);
+                    });
+                    title = "Genesene";
+                    break;
+                case "3":
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('date', 'time');
+                    data.addColumn('number', 'Gestorben');
+
+                    //Convert to a value array
+                    jsonData = Object.values(jsonData);
+                    jsonData.forEach(function (row) {
+                        data.addRow([
+                            new Date(row.time.replace(pattern,'$3-$2-$1')),
+                            row.Todesfälle
+                        ]);
+                    });
+                    title = "Gestorben";
+                    break;
+                default:
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('date', 'time');
+                    data.addColumn('number', 'Infizierte');
+                    data.addColumn('number', 'Genesen');
+                    data.addColumn('number', 'Gestorben');
+
+                    //Convert to a value array
+                    jsonData = Object.values(jsonData);
+                    jsonData.forEach(function (row) {
+                        data.addRow([
+                            new Date(row.time.replace(pattern,'$3-$2-$1')),
+                            row.AktuellInfizierte,
+                            row.Genesen,
+                            row.Todesfälle
+                        ]);
+                    });
+                    title = "Alles";
+                    break;
+            }
 
             function selectHandler() {
                 var selectedItem = chart.getSelection()[0];
                 if (selectedItem) {
                     highlight_row_from_chart(Object.keys(loadedData).length - selectedItem.row);
                 }
-              }
+            }
       
-            var data = new google.visualization.DataTable();
-            data.addColumn('date', 'time');
-            data.addColumn('number', 'Infizierte');
+        
+            /*switch(chartSelect.toString()) {
+                case "1":
+                case "2":
+                case "3":
+                    var options = {
+                        curveType: 'function',
+                        legend: { position: 'bottom' },
+                        width: '100%',
+                        vAxis: {
+                            title: title,
+                            textPosition: 'in'
+                        },
+                        hAxis: {
+                            title: 'Datum',
+                            textPosition: 'in'
+                        },
+                        chartArea: {
+                            top: 15,
+                            left: 10,
+                            right:10, 
+                            bottom:20
+                        }
+                    };
+                    chart = new google.visualization.LineChart(document.getElementById('canvasdiv'));
 
-            //Convert to a value array
-            jsonData = Object.values(jsonData);
-            jsonData.forEach(function (row) {
-                data.addRow([
-                    new Date(row.time.replace(pattern,'$3-$2-$1')),
-                    row.AktuellInfizierte
-                ]);
-            });
-
+                    google.visualization.events.addListener(chart, 'select', selectHandler);
+                    break;
+                default:
+                    
+                    break;
+            }*/
+            
             var options = {
-                title: 'Coronainfiziert in Österreich',
-                curveType: 'function',
+                isStacked: true,
                 legend: { position: 'bottom' },
                 width: '100%',
                 vAxis: {
-                    title: 'Infiziert',
+                    title: title,
                     textPosition: 'in'
                 },
                 hAxis: {
@@ -132,18 +230,15 @@ function drawChart() {
                     left: 10,
                     right:10, 
                     bottom:20
-                }
+                },
+                colors: ['blue', '#3fc26b', '#f36daa']
             };
-            chart = new google.visualization.LineChart(document.getElementById('canvasdiv'));
-
+            chart = new google.visualization.AreaChart(document.getElementById('canvasdiv'));
             google.visualization.events.addListener(chart, 'select', selectHandler);
-
             chart.draw(data, options);
       }
     }
 }
-
-
 
 //Create Div with the last Data inserted
 function addDataToDiv(data) {
