@@ -164,12 +164,9 @@ function drawChart() {
                         var average = 0;
                         for(var j = 6; j >= 0; j--){
                             if( i - j >= 0){
-                                console.log(i -j);
                                 average += jsonData[i -j]["tägliche Erkrankungen"]
                             }
-                            
                         }
-
                         data.addRow([
                             new Date(row.time.replace(pattern,'$3-$2-$1')),
                             average / 7
