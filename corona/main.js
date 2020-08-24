@@ -3,10 +3,21 @@ var count = 0;
 //after initial side loading Data will be loaded
 loadData();
 
+dayNames = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday'
+];
+
+datePattern = /(\d{2})\.(\d{2})\.(\d{4})/;
+
 
 /*
-Returns 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (alles)
-*/
+Returns 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (7 Tage Trend) or Alles */
 $('.box').on('change', function() {
     //Draw the new chart
     drawChart();
@@ -100,25 +111,27 @@ function drawChart() {
 
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
-        var pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
+        
         title = "";
         function drawChart() {
 
-            //Returns Data for different selections 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (alles)
+            //Returns Data for different selections 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (7 Tage Trend) or Alles */
             switch(chartSelect.toString()) {
                 case "1":
                     // code block
                     var data = new google.visualization.DataTable();
                     data.addColumn('date', 'time');
                     data.addColumn('number', 'Infizierte');
-
                     //Convert to a value array
                     jsonData = Object.values(jsonData);
                     jsonData.forEach(function (row) {
+                        //Add Annotation for 0 or 6 Month
+                        var date = new Date(row.time.replace(datePattern,'$3-$2-$1'))
                         data.addRow([
-                            new Date(row.time.replace(pattern,'$3-$2-$1')),
-                            row.AktuellInfizierte
+                            date,
+                            row.AktuellInfizierte        
                         ]);
+                        
                     });
                     title = "Täglich Infizierte"
                     break;
@@ -131,7 +144,7 @@ function drawChart() {
                     jsonData = Object.values(jsonData);
                     jsonData.forEach(function (row) {
                         data.addRow([
-                            new Date(row.time.replace(pattern,'$3-$2-$1')),
+                            new Date(row.time.replace(datePattern,'$3-$2-$1')),
                             row.Genesen
                         ]);
                     });
@@ -146,7 +159,7 @@ function drawChart() {
                     jsonData = Object.values(jsonData);
                     jsonData.forEach(function (row) {
                         data.addRow([
-                            new Date(row.time.replace(pattern,'$3-$2-$1')),
+                            new Date(row.time.replace(datePattern,'$3-$2-$1')),
                             row.Todesfälle
                         ]);
                     });
@@ -168,7 +181,7 @@ function drawChart() {
                             }
                         }
                         data.addRow([
-                            new Date(row.time.replace(pattern,'$3-$2-$1')),
+                            new Date(row.time.replace(datePattern,'$3-$2-$1')),
                             average / 7
                         ]);
                     });
@@ -185,7 +198,7 @@ function drawChart() {
                     jsonData = Object.values(jsonData);
                     jsonData.forEach(function (row) {
                         data.addRow([
-                            new Date(row.time.replace(pattern,'$3-$2-$1')),
+                            new Date(row.time.replace(datePattern,'$3-$2-$1')),
                             row.AktuellInfizierte,
                             row.Genesen,
                             row.Todesfälle
@@ -201,39 +214,6 @@ function drawChart() {
                     highlight_row_from_chart(Object.keys(loadedData).length - selectedItem.row);
                 }
             }
-      
-        
-            /*switch(chartSelect.toString()) {
-                case "1":
-                case "2":
-                case "3":
-                    var options = {
-                        curveType: 'function',
-                        legend: { position: 'bottom' },
-                        width: '100%',
-                        vAxis: {
-                            title: title,
-                            textPosition: 'in'
-                        },
-                        hAxis: {
-                            title: 'Datum',
-                            textPosition: 'in'
-                        },
-                        chartArea: {
-                            top: 15,
-                            left: 10,
-                            right:10, 
-                            bottom:20
-                        }
-                    };
-                    chart = new google.visualization.LineChart(document.getElementById('canvasdiv'));
-
-                    google.visualization.events.addListener(chart, 'select', selectHandler);
-                    break;
-                default:
-                    
-                    break;
-            }*/
             
             var options = {
                 isStacked: true,
@@ -263,10 +243,6 @@ function drawChart() {
 }
 
 
-function calculateAverage() {
-
-}
-
 //Create Div with the last Data inserted
 function addDataToDiv(data) {
     var str = "";
@@ -279,11 +255,15 @@ function addDataToDiv(data) {
 }
 
 function createTableFromData(data){
+
     var str = "";
     str +="<table class='content-table'><thead>";
     str +="<tr><td>Datum</td><td>Täglich Neu</td><td>Genesen</td><td>Gestorben</td><td>Gesamt Infiziert</td><td>Aktuell Infiziert</td></tr></thead><tbody>";
     for (i = Object.keys(data).length - 1; i >= 0 ; i--) {
-        str += "<tr><td>"+data[i].time+"</td><td>"+data[i]["tägliche Erkrankungen"]+"</td><td>"+data[i].Genesen+"</td><td>"+data[i]["Todesfälle"]+"</td><td>"+data[i]["GesamtInfizierte"]+"</td><td>"+data[i]["AktuellInfizierte"]+"</td></tr>";
+        var date = new Date(data[i].time.replace(datePattern,'$3-$2-$1'));
+        var month = parseInt(date.getMonth())+1
+        str += "<tr><td>"+dayNames[date.getDay()].substring(0,3)+","+date.getDate()+"."+ month +"</td>"
+        str += "<td>"+data[i]["tägliche Erkrankungen"]+"</td><td>"+data[i].Genesen+"</td><td>"+data[i]["Todesfälle"]+"</td><td>"+data[i]["GesamtInfizierte"]+"</td><td>"+data[i]["AktuellInfizierte"]+"</td></tr>";
       } 
     str +="</tbody></table>";
     $('#tablediv').append(str);
