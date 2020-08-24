@@ -332,7 +332,7 @@ div#canvasdiv {
 @media screen and (min-width: 1801px) and (max-width: 2000px) {
     div#canvasdiv {
         width:75rem !important;
-        height:50rem !important;
+        height:60rem !important;
     }
 
     #last_data_wrap {

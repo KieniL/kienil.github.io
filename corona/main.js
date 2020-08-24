@@ -120,14 +120,18 @@ function drawChart() {
                 legend: { position: 'bottom' },
                 width: '100%',
                 vAxis: {
-                    title: 'Infiziert'
+                    title: 'Infiziert',
+                    textPosition: 'in'
                 },
                 hAxis: {
-                    title: 'Datum'
+                    title: 'Datum',
+                    textPosition: 'in'
                 },
                 chartArea: {
-                    // leave room for y-axis labels
-                    width: '94%'
+                    top: 15,
+                    left: 10,
+                    right:10, 
+                    bottom:20
                 }
             };
             chart = new google.visualization.LineChart(document.getElementById('canvasdiv'));
