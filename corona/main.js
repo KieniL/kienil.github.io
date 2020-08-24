@@ -43,6 +43,11 @@ function highlight_row_from_chart(id){
     var rowSelected = table.getElementsByTagName('tr')[rowId];
     rowSelected.style.backgroundColor = "#ffff99";
     rowSelected.className += " selected";
+
+    rowSelected.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+    });
 }
 
 
@@ -79,10 +84,9 @@ function drawChart() {
         addDataToDiv(loadedData[Object.keys(loadedData).length -1]);
         createTableFromData(loadedData);
 
-        createChart(loadedData)
-
+        createChart(loadedData);
+        
     }
-
     function createChart(jsonData) {
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
