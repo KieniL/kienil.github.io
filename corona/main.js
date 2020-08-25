@@ -17,7 +17,7 @@ datePattern = /(\d{2})\.(\d{2})\.(\d{4})/;
 
 
 /*
-Returns 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (7 Tage Trend) or Alles */
+Returns 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (7 Tage Trend), 5 (Tage bis zur Verdoppelung) or Alles */
 $('.box').on('change', function() {
     //Draw the new chart
     drawChart();
@@ -115,7 +115,7 @@ function drawChart() {
         title = "";
         function drawChart() {
 
-            //Returns Data for different selections 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (7 Tage Trend) or Alles */
+            //Returns Data for different selections 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (7 Tage Trend), 5 (Tage bis zur Verdoppelung) or Alles */
             switch(chartSelect.toString()) {
                 case "1":
                     // code block
@@ -173,7 +173,6 @@ function drawChart() {
                     //Convert to a value array
                     jsonData = Object.values(jsonData);
                     jsonData.forEach(function (row, i) {
-                        row.GesamtInfizierte
                         var average = 0;
                         for(var j = 6; j >= 0; j--){
                             if( i - j >= 0){
@@ -186,6 +185,49 @@ function drawChart() {
                         ]);
                     });
                     title = "7 Tage Trend";
+                    break;
+                case "5":
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('date', 'time');
+                    data.addColumn('number', 'Tage bis zur Verdoppelung');
+
+                    //Convert to a value array
+                    jsonData = Object.values(jsonData);
+                    for (var i = 0; i < Object.keys(loadedData).length; i ++) {                    //jsonData.forEach(function (row, i) {
+
+                        var halfData = jsonData[i]["AktuellInfizierte"] / 2; //Contains the value of the half data to search for the days passed
+                        var indexToSearchFor = 0;
+                        var previousArray = jsonData.slice(0, i+1);
+                        var removeHalfDay = 0;
+
+                        
+                        if( i == 0){
+                            indexToSearchFor = 0;
+                        }
+                        else if(i == 1){
+                            indexToSearchFor = 1;
+                        }
+                        else{
+    
+                            for (var j = 0; j < previousArray.length; j++){
+                                if(halfData > previousArray[j]["AktuellInfizierte"]){
+                                    indexToSearchFor = j;
+                                }
+                            }
+                        }
+                        
+
+
+                        var Difference_In_Time = new Date(jsonData[i]["time"].replace(datePattern,'$3-$2-$1')).getTime() - new Date(jsonData[indexToSearchFor]["time"].replace(datePattern,'$3-$2-$1'));
+                        
+                        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+                        data.addRow([
+                            new Date(jsonData[i]["time"].replace(datePattern,'$3-$2-$1')),
+                            Difference_In_Days - removeHalfDay
+                        ]);
+                    }
+                    title = "Tage bis zur Verdoppelung";
                     break;
                 default:
                     var data = new google.visualization.DataTable();
