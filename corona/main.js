@@ -106,7 +106,6 @@ function drawChart() {
         
     }
 
-
     function createChart(jsonData, chartSelect) {
 
         google.charts.load('current', {'packages':['corechart']});
@@ -198,7 +197,6 @@ function drawChart() {
                         var halfData = jsonData[i]["AktuellInfizierte"] / 2; //Contains the value of the half data to search for the days passed
                         var indexToSearchFor = 0;
                         var previousArray = jsonData.slice(0, i+1);
-                        var removeHalfDay = 0;
 
                         
                         if( i == 0){
@@ -217,14 +215,13 @@ function drawChart() {
                         }
                         
 
-
                         var Difference_In_Time = new Date(jsonData[i]["time"].replace(datePattern,'$3-$2-$1')).getTime() - new Date(jsonData[indexToSearchFor]["time"].replace(datePattern,'$3-$2-$1'));
                         
                         var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
                         data.addRow([
                             new Date(jsonData[i]["time"].replace(datePattern,'$3-$2-$1')),
-                            Difference_In_Days - removeHalfDay
+                            Difference_In_Days
                         ]);
                     }
                     title = "Tage bis zur Verdoppelung";
@@ -257,26 +254,60 @@ function drawChart() {
                 }
             }
             
-            var options = {
-                isStacked: true,
-                legend: { position: 'bottom' },
-                width: '100%',
-                vAxis: {
-                    title: title,
-                    textPosition: 'in'
-                },
-                hAxis: {
-                    title: 'Datum',
-                    textPosition: 'in'
-                },
-                chartArea: {
-                    top: 15,
-                    left: 10,
-                    right:10, 
-                    bottom:20
-                },
-                colors: ['blue', '#3fc26b', '#f36daa']
-            };
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // dark mode
+                console.log("Dark mode");
+                var options = {
+                    isStacked: true,
+                    legend: { position: 'bottom' },
+                    fontSize: 10,
+                    width: '100%',
+                    vAxis: {
+                        title: title,
+                        textPosition: 'in',
+                        textStyle: {
+                            color: '#ffffff'
+                        }
+                    },
+                    hAxis: {
+                        title: 'Datum',
+                        textPosition: 'in',
+                        textStyle: {
+                            color: '#ffffff'
+                        }
+                    },
+                    chartArea: {
+                        top: 15,
+                        left: 10,
+                        right:10, 
+                        bottom:20
+                    },
+                    colors: ['blue', '#3fc26b', '#f36daa']
+                };
+            }else{
+                var options = {
+                    isStacked: true,
+                    legend: { position: 'bottom' },
+                    width: '100%',
+                    fontSize: 10,
+                    vAxis: {
+                        title: title,
+                        textPosition: 'in'
+                    },
+                    hAxis: {
+                        title: 'Datum',
+                        textPosition: 'in'
+                    },
+                    chartArea: {
+                        top: 15,
+                        left: 10,
+                        right:10, 
+                        bottom:20
+                    },
+                    colors: ['blue', '#3fc26b', '#f36daa']
+                };
+            }
+            
             chart = new google.visualization.AreaChart(document.getElementById('canvasdiv'));
             google.visualization.events.addListener(chart, 'select', selectHandler);
             chart.draw(data, options);

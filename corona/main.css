@@ -10,10 +10,10 @@
 
 	img {
 		filter: grayscale(20%);
-	}
+    }
+    
 
 }
-
 
 .box {
     position: relative;
@@ -45,6 +45,7 @@
 div#canvasdiv {
     width:75rem !important;
     height:50rem !important;
+    font-size: 5rem;
 }
 
 #last_data_wrap {
@@ -59,8 +60,8 @@ div#canvasdiv {
 .data1, .data2, .data3, .data4, .data5 {
     margin: 1rem;
     text-align: center;
-    padding: 0.5rem;
-    background: white;
+    padding: 1rem;
+    background: #FFFFF0;
 }
 
 #data_wrap {
