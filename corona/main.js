@@ -15,9 +15,14 @@ dayNames = [
 
 datePattern = /(\d{2})\.(\d{2})\.(\d{4})/;
 
+//Hide Calendar Option on all screens lower than 1820 since not nice view
+if ($(window).width() <= 1820) {
+    $('.box option[value="6"]').prop('disabled', true);
+}
+
 
 /*
-Returns 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (7 Tage Trend), 5 (Tage bis zur Verdoppelung) or Alles */
+Returns 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (7 Tage Trend), 5 (Tage bis zur Verdoppelung), 6 Neu hinzugekommen or Alles */
 $('.box').on('change', function() {
     //Draw the new chart
     drawChart();
@@ -109,12 +114,20 @@ function drawChart() {
     function createChart(jsonData, chartSelect) {
 
         google.charts.load('current', {'packages':['corechart']});
+        google.charts.load("current", {packages:["calendar"]});
         google.charts.setOnLoadCallback(drawChart);
         
         title = "";
         function drawChart() {
 
-            //Returns Data for different selections 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (7 Tage Trend), 5 (Tage bis zur Verdoppelung) or Alles */
+            /*Returns Data for different selections
+             1 (nur infiziert),
+             2 (nur genesen),
+             3(nur gestorben),
+             4 (7 Tage Trend),
+             5 (Tage bis zur Verdoppelung),
+             6 Neu hinzugekommen or
+             Alles */
             switch(chartSelect.toString()) {
                 case "1":
                     // code block
@@ -226,6 +239,21 @@ function drawChart() {
                     }
                     title = "Tage bis zur Verdoppelung";
                     break;
+                case "6":
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('date', 'time');
+                    data.addColumn('number', 'Neu Infiziert');
+
+                    //Convert to a value array
+                    jsonData = Object.values(jsonData);
+                    jsonData.forEach(function (row) {
+                        data.addRow([
+                            new Date(row.time.replace(datePattern,'$3-$2-$1')),
+                            row["tägliche Erkrankungen"]
+                        ]);
+                    });
+                    title = "Neu Infizierte";
+                    break;
                 default:
                     var data = new google.visualization.DataTable();
                     data.addColumn('date', 'time');
@@ -253,38 +281,25 @@ function drawChart() {
                     highlight_row_from_chart(Object.keys(loadedData).length - selectedItem.row);
                 }
             }
+
             
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                // dark mode
-                console.log("Dark mode");
+            if(chartSelect.toString() == "6"){
                 var options = {
-                    isStacked: true,
-                    legend: { position: 'bottom' },
-                    fontSize: 10,
-                    width: '100%',
-                    vAxis: {
-                        title: title,
-                        textPosition: 'in',
-                        textStyle: {
-                            color: '#ffffff'
-                        }
-                    },
-                    hAxis: {
-                        title: 'Datum',
-                        textPosition: 'in',
-                        textStyle: {
-                            color: '#ffffff'
-                        }
-                    },
+                    title: title,
+                    calendar: { cellSize: 19 },
                     chartArea: {
                         top: 15,
                         left: 10,
                         right:10, 
                         bottom:20
                     },
-                    colors: ['blue', '#3fc26b', '#f36daa']
-                };
+                    explorer: { actions: ['dragToPan'] },
+                  };
+           
+                chart = new google.visualization.Calendar(document.getElementById('canvasdiv'));
+                
             }else{
+                
                 var options = {
                     isStacked: true,
                     legend: { position: 'bottom' },
@@ -305,11 +320,12 @@ function drawChart() {
                         bottom:20
                     },
                     colors: ['blue', '#3fc26b', '#f36daa']
+                    
                 };
+                chart = new google.visualization.AreaChart(document.getElementById('canvasdiv'));
+                google.visualization.events.addListener(chart, 'select', selectHandler);
             }
-            
-            chart = new google.visualization.AreaChart(document.getElementById('canvasdiv'));
-            google.visualization.events.addListener(chart, 'select', selectHandler);
+           
             chart.draw(data, options);
       }
     }
