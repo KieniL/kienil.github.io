@@ -21,6 +21,10 @@ if ($(window).width() <= 1820) {
 }
 
 
+$( window ).resize(function() {
+    drawChart();
+  });
+
 /*
 Returns 1 (nur infiziert),2 (nur genesen),3(nur gestorben) or 4 (7 Tage Trend), 5 (Tage bis zur Verdoppelung), 6 Neu hinzugekommen or Alles */
 $('.box').on('change', function() {
