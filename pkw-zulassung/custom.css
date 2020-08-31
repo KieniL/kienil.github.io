@@ -1,0 +1,44 @@
+.box {
+    position: relative;
+    width: 200px;
+}
+  
+.box select {
+    background-color: #0563af;
+    color: white;
+    padding: 0.5rem;
+    width: 250px;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+}
+
+.box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+    padding: 30px;
+}
+
+
+footer { 
+    position: fixed;
+    vertical-align: middle;
+    text-align: left;
+    bottom: 0; 
+    width: 100%; 
+    /* Height of the footer*/  
+    height: 3rem; 
+    background: #f8f9fa;
+    z-index: 2;
+}
+
+span {
+    font-size: 2rem;
+    font-weight: bold;
+}
