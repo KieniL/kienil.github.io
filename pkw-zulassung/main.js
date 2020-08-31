@@ -3,7 +3,6 @@
 value = $('.box').find(":selected").val();
 showDiagramBasedOnValue();
 
-$(".time").text(new Date($.now()));
 
 
 $('.box').on('change', function() {
