@@ -82,7 +82,7 @@ function highlight_row_from_chart(id){
 
 function loadData() {
     //URL for Request
-    var URL = "https://corona-vso6dwhtwa-ew.a.run.app/data";
+    var URL = "data.json";
     //var URL = "http://localhost:8080/data";
 
     $.getJSON({
